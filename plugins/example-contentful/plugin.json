@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "example-contentful",
+  "description": "Manage Contentful content from the builder: search and edit entries, content types, assets, and locales through Contentful's hosted MCP server. Connects with your Contentful account via OAuth.",
+  "extensions": {
+    "co.subbly.builder": {
+      "displayName": "Example: Contentful",
+      "connectors": {
+        "contentful": {
+          "auth": "oauth"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "./schemas/marketplace.schema.json",
+  "slug": "subbly-plugin-examples",
+  "version": "0.1.3",
+  "plugins": [
+    {
+      "slug": "example-agent",
+      "source": {
+        "type": "local",
+        "path": "plugins/example-agent"
+      }
+    },
+    {
+      "slug": "example-automations",
+      "source": {
+        "type": "local",
+        "path": "plugins/example-automations"
+      }
+    },
+    {
+      "slug": "example-contentful",
+      "source": {
+        "type": "local",
+        "path": "plugins/example-contentful"
+      }
+    },
+    {
+      "slug": "example-notes",
+      "source": {
+        "type": "local",
+        "path": "plugins/example-notes"
+      }
+    },
+    {
+      "slug": "example-sentry",
+      "source": {
+        "type": "local",
+        "path": "plugins/example-sentry"
+      }
+    }
+  ]
+}

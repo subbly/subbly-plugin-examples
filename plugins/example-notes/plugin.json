@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "example-notes",
+  "description": "The smallest valid plugin: one skill, no config, no automations, no connector. Copy it to start a knowledge-only plugin.",
+  "author": {
+    "name": "Subbly",
+    "url": "https://www.subbly.co"
+  },
+  "extensions": {
+    "co.subbly.builder": {
+      "displayName": "Example: notes"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "subbly-plugin-examples",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Example Subbly marketplace plugins. Tooling only: no plugin ships from this package.",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:cli": "subbly-plugin-lint",
+    "test": "pnpm --filter @subbly/plugin-lint test",
+    "changelog": "npx @changesets/cli",
+    "release": "pnpm changeset version"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^3.0.1",
+    "@eslint/json": "^2.0.1",
+    "@eslint/markdown": "^8.0.3",
+    "@subbly/plugin-lint": "workspace:*",
+    "eslint": "^10.8.1"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@10.20.0"
+}

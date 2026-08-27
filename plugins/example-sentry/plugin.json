@@ -1,0 +1,20 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "example-sentry",
+  "description": "Error monitoring with Sentry: wire the SDK into the site, capture client and server errors, and keep preview noise separate from production events.",
+  "author": {
+    "name": "Subbly",
+    "url": "https://www.subbly.co"
+  },
+  "extensions": {
+    "co.subbly.builder": {
+      "displayName": "Example: Sentry",
+      "setup": true,
+      "connectors": {
+        "sentry": {
+          "auth": "oauth"
+        }
+      }
+    }
+  }
+}

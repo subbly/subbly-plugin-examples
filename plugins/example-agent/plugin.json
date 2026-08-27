@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "example-agent",
+  "description": "Example plugin that ships a subagent with a narrow tool allowlist, plus a skill that tells the main agent when to spawn it. Copy it to start a plugin that delegates noisy, self-contained work.",
+  "author": {
+    "name": "Subbly",
+    "url": "https://www.subbly.co"
+  },
+  "extensions": {
+    "co.subbly.builder": {
+      "displayName": "Example: agent"
+    }
+  }
+}

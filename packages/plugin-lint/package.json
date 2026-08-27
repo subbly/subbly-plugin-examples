@@ -1,0 +1,45 @@
+{
+  "name": "@subbly/plugin-lint",
+  "version": "0.0.1",
+  "private": false,
+  "type": "module",
+  "description": "The Subbly marketplace release gate, offline. Lints marketplace.json, plugin manifests, mcp.json, skills, agents and automations.",
+  "license": "MIT",
+  "author": "Subbly LTD <oleg@subbly.co> (https://www.subbly.co)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/subbly/subbly-plugin-examples.git",
+    "directory": "packages/plugin-lint"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "subbly",
+    "plugin",
+    "marketplace",
+    "lint",
+    "eslint-plugin"
+  ],
+  "bin": {
+    "subbly-plugin-lint": "bin/subbly-plugin-lint.mjs"
+  },
+  "exports": {
+    ".": "./index.mjs",
+    "./eslint": "./src/eslint-plugin.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "bin",
+    "src",
+    "index.mjs",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "test": "node test/lint.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
