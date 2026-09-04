@@ -45,7 +45,7 @@
         },
         "published": {
           "type": "boolean",
-          "description": "Set false to hide the plugin from the marketplace: only shops with the unpublished-plugins feature flag enabled in the builder admin can see and install it. Omit (or true) to publish to everyone. Flipping it is a content change, so it releases only with a version bump. Existing installations are never touched.",
+          "description": "Set false to hide the plugin from the marketplace while you test it. Hidden plugins are visible only to shops that Subbly support has enabled for testing, so contact Subbly customer support and name the shop that must see it. Omit (or true) to publish to everyone. Flipping it is a content change, so it releases only with a version bump. Existing installations are never touched.",
           "examples": [false]
         },
         "source": {
