@@ -4,7 +4,7 @@
 
 Path: `co.subbly.builder/agents/<name>/AGENT.md`. The directory name is the agent name. Frontmatter has `name` (same as the directory), `description`, and optional `tools`. The body is required: it becomes the system message. The main agent starts the subagent, waits, and gets back only the final message.
 
-The agent knows nothing about the project, not the shop, the stack or the conventions. Put all it needs in its body or in a skill it loads. Knowledge the main agent can read is a skill, not an agent. How to write the description and the body, and how to prune them: `writing-for-the-agent.md`.
+The agent knows nothing about the project, not the shop, the stack or the conventions. Put all it needs in its body or in a skill it loads. Knowledge the main agent can read is a skill, not an agent. How to write the description and the body, and how to prune them: `references/writing-for-the-agent.md`.
 
 ## Tools
 

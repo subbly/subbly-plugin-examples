@@ -21,7 +21,7 @@ Name the server after the vendor, lowercase, starting with a letter. Never add t
 
 Two ways.
 
-**API key**: put it in a header as `${KEY}`, where `KEY` is a config field the user fills at install, usually `secret: true`. `${KEY}` expands in header values only, never in the URL. `KEY` must be a declared field or a builder default, or the release fails. Field rules: `config-fields.md`.
+**API key**: put it in a header as `${KEY}`, where `KEY` is a config field the user fills at install, usually `secret: true`. `${KEY}` expands in header values only, never in the URL. `KEY` must be a declared field or a builder default, or the release fails. Field rules: `references/config-fields.md`.
 
 ```json
 "headers": { "Authorization": "Bearer ${API_KEY}" }
@@ -37,4 +37,4 @@ A name under `connectors` that `mcp.json` does not define fails the release.
 
 ## Renames
 
-Never rename a released connector. The builder removes the old connector and its stored OAuth credentials, and every user must connect again. The prefix rule and the other silent traps: `names-and-collisions.md`.
+Never rename a released connector. The builder removes the old connector and its stored OAuth credentials, and every user must connect again. The prefix rule and the other silent traps: `references/names-and-collisions.md`.

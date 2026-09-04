@@ -7,4 +7,4 @@ Path: `skills/<name>/SKILL.md`, at the plugin root. The Agent Plugins standard o
 - Long detail goes in `skills/<name>/references/`, addressed relative to the skill directory.
 - The builder runs the skill as `<slug>:<name>`. Never write the prefix yourself.
 
-How to write the description and the body: `writing-for-the-agent.md`.
+How to write the description and the body: `references/writing-for-the-agent.md`.

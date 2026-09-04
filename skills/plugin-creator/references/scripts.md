@@ -20,4 +20,4 @@ The builder owns the location. Its environment prompt lists the scripts director
 
 ## Config in scripts
 
-A script reads config fields from `process.env` under the full prefixed name, `PLUGIN_<SLUG>__<KEY>`. The bare `${KEY}` form belongs to `mcp.json` only. Details: `config-fields.md`.
+A script reads config fields from `process.env` under the full prefixed name, `PLUGIN_<SLUG>__<KEY>`. The bare `${KEY}` form belongs to `mcp.json` only. Details: `references/config-fields.md`.

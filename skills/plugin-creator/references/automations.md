@@ -28,7 +28,7 @@ Each declaration has exactly three keys. All are required. Unknown keys fail.
 
 - Each declared slug needs its file. Each file needs its declaration. A file without one fails the release.
 - The body must not be empty. It is the whole prompt. The run has no user and no other context.
-- How to write a prompt that runs unattended and ends on a named final message: `writing-for-the-agent.md`.
+- How to write a prompt that runs unattended and ends on a named final message: `references/writing-for-the-agent.md`.
 - **No frontmatter**: the builder does not parse or strip it. It lands verbatim in the agent instruction. `name`, `schedule` and `model` go in `plugin.json` only.
 
 ## Run state
