@@ -57,10 +57,10 @@ Inline what every path through the body needs. Push what only some paths reach i
 
 Prune line by line:
 
-- **One source of truth.** Say each thing in one place. The same rule in two places drifts and inflates its own weight.
-- **Do not restate the environment.** `package.json` scripts, config files and `--help` output are already there and cannot go stale. Write down what the agent cannot find by looking: the convention nobody wrote, the reason behind a choice, the gotcha no config confesses.
-- **Delete no-ops.** A sentence the agent already obeys by default pays context to say nothing. "Be careful" is a no-op. Delete the whole sentence, or replace the weak word with one strong enough to change behaviour.
-- **Delete stale lines.** A body grows by layers because adding feels safe and removing feels risky. Each release, read the document once and remove what no longer bears on the task.
+- **One source of truth**: say each thing in one place. The same rule in two places drifts and inflates its own weight.
+- **Do not restate the environment**: `package.json` scripts, config files and `--help` output are already there and cannot go stale. Write down what the agent cannot find by looking: the convention nobody wrote, the reason behind a choice, the gotcha no config confesses.
+- **Delete no-ops**: a sentence the agent already obeys by default pays context to say nothing. "Be careful" is a no-op. Delete the whole sentence, or replace the weak word with one strong enough to change behaviour.
+- **Delete stale lines**: a body grows by layers because adding feels safe and removing feels risky. Each release, read the document once and remove what no longer bears on the task.
 
 ## Checklist before commit
 

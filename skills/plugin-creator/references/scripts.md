@@ -1,13 +1,11 @@
 # Scripts
 
-What ships in `co.subbly.builder/scripts/` and how the sandbox runs it.
-
 ## Requirements
 
 - Scripts sync into the project sandbox as plain files. They run with `execute_command`. There is no build step. Ship what runs.
-- Put dependencies in `scripts/package.json`. Commit `scripts/pnpm-lock.yaml`. Install runs `pnpm install --frozen-lockfile`, so **dependencies without a lockfile fail the release** (`scripts/lockfile-missing`).
+- Put dependencies in `scripts/package.json`. Commit `scripts/pnpm-lock.yaml`. Install runs `pnpm install --frozen-lockfile`, so dependencies without a lockfile fail the release (`scripts/lockfile-missing`).
 - A `package.json` with no dependencies and no lockfile only warns. But the install step then runs again on each sync. Commit a lockfile, or remove the `package.json`.
-- **No symlinks under the plugin** (`layout/symlink`). They pass the release gate and fail at runtime. Commit real files.
+- No symlinks under the plugin (`layout/symlink`). They pass the release gate and fail at runtime. Commit real files.
 - Do not commit `node_modules`. It ships into each sandbox. Add it to gitignore.
 
 ## How to address a script

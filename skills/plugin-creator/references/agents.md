@@ -8,7 +8,7 @@ The agent knows nothing about the project, not the shop, the stack or the conven
 
 ## Tools
 
-The `tools` frontmatter key accepts exactly twelve names. Any other name fails the whole marketplace release.
+The `tools` frontmatter key accepts only the names below. Any other name fails the whole marketplace release.
 
 - `read_file` reads a file, an image or a PDF
 - `edit_file` replaces exact strings in a file
@@ -29,10 +29,10 @@ An agent cannot write into its own installed plugin directory. It can write to t
 
 ## How to write the `tools` key
 
-- Omitted, or `tools:` with no value: all twelve.
-- `tools: '*'` or bare `tools: *`: all twelve, never the builder's wider pool.
+- Omitted, or `tools:` with no value: every name below.
+- `tools: '*'` or bare `tools: *`: every name below, never the builder's wider pool.
 - `tools: read_file, execute_command`: comma string. Segments are trimmed.
-- `tools:` then `  - read_file` lines: YAML array. Elements are **not** trimmed. A leading space fails.
+- `tools:` then `  - read_file` lines: YAML array. Elements are not trimmed. A leading space fails.
 - `tools: ''`: zero tools. The roster shows `none`.
 
 The wildcard gives nothing more than the full list. A narrow agent must list its tools.
