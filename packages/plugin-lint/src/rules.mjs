@@ -40,7 +40,7 @@ const AUTOMATION_KEYS = ['name', 'schedule', 'model']
 const AUTOMATION_MODELS = ['normal', 'intelligent-high']
 const SERVER_KEYS = ['type', 'url', 'headers']
 
-export const AGENT_TOOLS = ['read_file', 'write_file', 'edit_file', 'execute_command', 'get_stock_image', 'scrape_webpage', 'generate_image', 'restart_preview', 'apply_to_preview', 'mcp_run_tool', 'skill']
+export const AGENT_TOOLS = ['read_file', 'write_file', 'edit_file', 'execute_command', 'get_stock_image', 'scrape_webpage', 'generate_image', 'restart_preview', 'apply_to_preview', 'tool_run', 'tool_search', 'tool_describe', 'skill']
 export const DEFAULT_ENV_KEYS = [
   'SUBBLY_API_KEY',
   'NEXT_PUBLIC_SUBBLY_API_KEY',

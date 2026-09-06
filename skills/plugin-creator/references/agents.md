@@ -19,7 +19,9 @@ The `tools` frontmatter key accepts only the names below. Any other name fails t
 - `generate_image` generates an image asset
 - `scrape_webpage` gets a public web page
 - `skill` loads one of your skills
-- `mcp_run_tool` calls a connector tool
+- `tool_run` calls a connector tool
+- `tool_search` finds a connector tool by words or a regexp
+- `tool_describe` reads the input and output shapes of a connector tool
 - `apply_to_preview` pushes changes into the live preview
 - `restart_preview` restarts the preview when it is stuck or stale
 
