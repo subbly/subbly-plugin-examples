@@ -1,6 +1,6 @@
 {
   "name": "@subbly/plugin-lint",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "type": "module",
   "description": "The Subbly marketplace release gate, offline. Lints marketplace.json, plugin manifests, mcp.json, skills, agents and automations.",

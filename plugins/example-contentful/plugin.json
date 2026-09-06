@@ -7,7 +7,27 @@
       "displayName": "Example: Contentful",
       "connectors": {
         "contentful": {
-          "auth": "oauth"
+          "auth": "oauth",
+          "tools": [
+            "get_initial_context",
+            "search_entries",
+            "semantic_search",
+            "get_entry",
+            "create_entry",
+            "update_entry",
+            "publish_entry",
+            "unpublish_entry",
+            "list_content_types",
+            "get_content_type",
+            "list_assets",
+            "get_asset",
+            "upload_asset",
+            "update_asset",
+            "publish_asset",
+            "unpublish_asset",
+            "list_locales",
+            "list_tags"
+          ]
         }
       }
     }

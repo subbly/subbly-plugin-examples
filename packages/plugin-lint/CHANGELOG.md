@@ -1,5 +1,11 @@
 # @subbly/plugin-lint
 
+## 0.0.3
+
+### Patch Changes
+
+- A connector marker may carry a `tools` allowlist beside `auth`, and `auth` becomes optional. `tools` is a non-empty array of unique tool names, 1-100 characters each. A marker with neither field is rejected, as the builder refresh rejects it. Rule ids `connector/marker` and `connector/tools` join `connector/auth`.
+
 ## 0.0.2
 
 ### Patch Changes

@@ -344,6 +344,52 @@ check('rejects a connector auth other than oauth', (r) => baseline(r, {
   plugin: { $schema: SCHEMA, name: 'alpha', description: 'x', extensions: { 'co.subbly.builder': { displayName: 'Alpha', connectors: { alpha: { auth: 'header' } } } } },
 }), { rule: 'connector/auth' })
 
+const withTools = (tools, auth) => ({
+  $schema: SCHEMA, name: 'alpha', description: 'x',
+  extensions: { 'co.subbly.builder': { displayName: 'Alpha', connectors: { alpha: { ...(auth && { auth }), tools } } } },
+})
+const alphaServer = { $schema: MCP_SCHEMA, mcpServers: { alpha: { type: 'streamable-http', url: 'https://x.test/mcp' } } }
+
+check('accepts a tool allowlist without auth', (r) => {
+  baseline(r, { plugin: withTools(['list_products', 'get_product']) })
+  write(r, 'plugins/alpha/mcp.json', alphaServer)
+}, { clean: true })
+
+check('accepts a tool allowlist beside oauth', (r) => {
+  baseline(r, { plugin: withTools(['list_products'], 'oauth') })
+  write(r, 'plugins/alpha/mcp.json', alphaServer)
+}, { clean: true })
+
+check('rejects an empty tool allowlist', (r) => {
+  baseline(r, { plugin: withTools([]) })
+  write(r, 'plugins/alpha/mcp.json', alphaServer)
+}, { rule: 'connector/tools' })
+
+check('rejects a duplicate tool name', (r) => {
+  baseline(r, { plugin: withTools(['list_products', 'list_products']) })
+  write(r, 'plugins/alpha/mcp.json', alphaServer)
+}, { rule: 'connector/tools' })
+
+check('rejects a tool name that is not a non-empty string', (r) => {
+  baseline(r, { plugin: withTools(['list_products', '']) })
+  write(r, 'plugins/alpha/mcp.json', alphaServer)
+}, { rule: 'connector/tools' })
+
+check('rejects a tool allowlist that is not an array', (r) => {
+  baseline(r, { plugin: withTools('list_products') })
+  write(r, 'plugins/alpha/mcp.json', alphaServer)
+}, { rule: 'connector/tools' })
+
+check('rejects a connector marker with neither auth nor tools', (r) => {
+  baseline(r, { plugin: { $schema: SCHEMA, name: 'alpha', description: 'x', extensions: { 'co.subbly.builder': { displayName: 'Alpha', connectors: { alpha: {} } } } } })
+  write(r, 'plugins/alpha/mcp.json', alphaServer)
+}, { rule: 'connector/marker' })
+
+check('rejects an unknown key in a connector marker', (r) => {
+  baseline(r, { plugin: { $schema: SCHEMA, name: 'alpha', description: 'x', extensions: { 'co.subbly.builder': { displayName: 'Alpha', connectors: { alpha: { auth: 'oauth', scopes: [] } } } } } })
+  write(r, 'plugins/alpha/mcp.json', alphaServer)
+}, { rule: 'connector/marker' })
+
 check('rejects a non-https url', (r) => {
   baseline(r)
   write(r, 'plugins/alpha/mcp.json', { $schema: MCP_SCHEMA, mcpServers: { s: { type: 'streamable-http', url: 'http://x.test/mcp' } } })
