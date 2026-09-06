@@ -17,7 +17,8 @@ The `tools` frontmatter key accepts only the names below. Any other name fails t
 - `execute_command` runs a shell command
 - `get_stock_image` finds a stock photo
 - `generate_image` generates an image asset
-- `scrape_webpage` gets a public web page
+- `web_search` searches the web and returns result links with snippets
+- `web_fetch` gets a public web page
 - `skill` loads one of your skills
 - `tool_run` calls a connector tool
 - `tool_search` finds a connector tool by words or a regexp
