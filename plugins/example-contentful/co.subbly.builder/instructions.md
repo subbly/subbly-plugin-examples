@@ -1,4 +1,4 @@
-The Contentful plugin exposes Contentful's hosted MCP server tools (entries, content types, assets, locales, tags, AI actions).
+The Contentful plugin exposes the entry, content type, asset, locale and tag tools of Contentful's hosted MCP server. Delete tools, space and environment management, and AI actions stay hidden.
 
 - Start with `subbly.contentful.get_initial_context({})`. It takes no parameters. Call it once, not before every other tool call.
 - Every tool returns XML.

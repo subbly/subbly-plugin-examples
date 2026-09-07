@@ -64,7 +64,9 @@ export const RULES = {
   'setup/missing-install-skill': 'setup: true requires a skills/install skill',
 
   // connectors and mcp.json
-  'connector/auth': 'a connector marker is exactly { "auth": "oauth" }',
+  'connector/marker': 'a connector marker holds auth, tools or both, and nothing else',
+  'connector/auth': 'auth, when present, is exactly "oauth"',
+  'connector/tools': 'tools is a non-empty array of unique tool names, 1-100 characters each',
   'connector/name-length': 'connector names are 1-100 characters',
   'connector/undefined-server': 'a declared connector needs a matching mcp.json server',
   'connector/no-mcp': 'declaring a connector requires an mcp.json',

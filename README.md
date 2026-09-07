@@ -10,13 +10,13 @@ Example plugins for the Subbly Builder marketplace. Each one is a complete, lint
 | `plugins/example-automations` | A script with dependencies and a committed lockfile, config fields (text, secret, select), a scheduled automation with run state, always-on instructions, and a skill that calls the script. |
 | `plugins/example-agent` | A subagent with a narrow tool allowlist, and a skill that tells the main agent when to spawn it. |
 | `plugins/example-sentry` | Setup: `"setup": true` plus an `install` skill that walks the user through wiring the Sentry SDK in the setup chat, with an OAuth connector and a cover image. |
-| `plugins/example-contentful` | A connector: a remote MCP server with OAuth, plus instructions for its tools. |
+| `plugins/example-contentful` | A connector: a remote MCP server with OAuth, a tool allowlist, plus instructions for its tools. |
 
 ## Layout
 
 `packages/plugin-lint` holds `@subbly/plugin-lint`, the linter. `marketplace.json` lists every plugin by slug; each plugin lives at `plugins/<slug>/`:
 
-- `plugin.json`: the manifest. `name` must equal the marketplace slug. Subbly's data (display name, config fields, automations, connector auth) sits under `extensions["co.subbly.builder"]`.
+- `plugin.json`: the manifest. `name` must equal the marketplace slug. Subbly's data (display name, config fields, automations, connector auth and tool allowlists) sits under `extensions["co.subbly.builder"]`.
 - `skills/<name>/SKILL.md` and optional `mcp.json`: spec-owned, at the plugin root.
 - `co.subbly.builder/`: builder-only content, ignored by other clients: `agents/<name>/AGENT.md`, `automations/<slug>.md`, `scripts/`, `instructions.md`.
 

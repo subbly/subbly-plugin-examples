@@ -27,11 +27,26 @@ Two ways.
 "headers": { "Authorization": "Bearer ${API_KEY}" }
 ```
 
-**OAuth**: no header. Declare the server in `plugin.json` under `extensions["co.subbly.builder"].connectors`, keyed by the same server name. The user signs in through the vendor after install.
+**OAuth**: no header. Declare the server in `plugin.json` under `extensions["co.subbly.builder"].connectors`, keyed by the same server name, with `"auth": "oauth"`. The user signs in through the vendor after install.
 
 ```json
 "connectors": { "stripe": { "auth": "oauth" } }
 ```
+
+## Tools
+
+By default the agent sees every tool the server serves. To narrow it, add `tools` to the same `connectors.<server>` object: an array of exact tool names, at least one, no duplicates. The agent then sees and can call only those. Everything else is hidden from the system prompt, `tool_search` and `tool_describe`, and a connector script calling a hidden tool gets the unknown-tool error.
+
+```json
+"connectors": {
+  "stripe": { "auth": "oauth", "tools": ["list_customers", "create_payment_link"] }
+}
+```
+
+- Exact names only. No globs, no denylist: either would silently widen when the vendor adds a tool.
+- List only what the plugin's skills need. A shorter list means a shorter prompt and fewer wrong picks.
+- `auth` is optional once `tools` is present, so an API-key server can carry a list too. A `connectors.<server>` object with neither field fails the release.
+- The release check reads only the shape. It never contacts the server, so a name the server does not serve passes the release and is dropped at runtime with a logged warning. Check the names against the vendor's tool list.
 
 A name under `connectors` that `mcp.json` does not define fails the release.
 

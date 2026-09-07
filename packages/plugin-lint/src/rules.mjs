@@ -564,7 +564,7 @@ function lintSchedule(report, file, pos, label, schedule) {
 function lintConnectors(report, file, at, check, ns, ext) {
   if (ext.connectors === undefined) return []
   if (!isObject(ext.connectors)) {
-    report.error('connector/auth', file, `${ns}.connectors: expected object, received ${typeOf(ext.connectors)}`, at(`${ns}.connectors`))
+    report.error('connector/marker', file, `${ns}.connectors: expected object, received ${typeOf(ext.connectors)}`, at(`${ns}.connectors`))
     return []
   }
 
@@ -577,16 +577,44 @@ function lintConnectors(report, file, at, check, ns, ext) {
       report.error('connector/name-length', file, `${label}: connector name must be 1-100 characters`, at(p, { key: true }))
     }
     if (!isObject(marker)) {
-      report.error('connector/auth', file, `${label}: expected object, received ${typeOf(marker)}`, at(p))
+      report.error('connector/marker', file, `${label}: expected object, received ${typeOf(marker)}`, at(p))
       continue
     }
-    check.strictKeys('connector/auth', p, marker, ['auth'], label)
-    if (marker.auth !== 'oauth') {
+    check.strictKeys('connector/marker', p, marker, ['auth', 'tools'], label)
+    if (marker.auth === undefined && marker.tools === undefined) {
+      report.error('connector/marker', file, `${label}: declare auth, tools or both`, at(p))
+    }
+    if (marker.auth !== undefined && marker.auth !== 'oauth') {
       report.error('connector/auth', file, `${label}.auth: expected "oauth", received ${JSON.stringify(marker.auth)}`, at(`${p}.auth`))
+    }
+    if (marker.tools !== undefined) {
+      lintToolAllowlist(report, file, at, check, `${p}.tools`, `${label}.tools`, marker.tools)
     }
     names.push(name)
   }
   return names
+}
+
+function lintToolAllowlist(report, file, at, check, p, label, tools) {
+  if (!Array.isArray(tools)) {
+    report.error('connector/tools', file, `${label}: expected array, received ${typeOf(tools)}`, at(p))
+    return
+  }
+  if (tools.length === 0) {
+    report.error('connector/tools', file, `${label}: must name at least one tool`, at(p))
+    return
+  }
+  const seen = new Set()
+  for (const [index, tool] of tools.entries()) {
+    if (!check.string('connector/tools', `${p}.${index}`, tool, { min: 1, max: 100, label: `${label}[${index}]` })) {
+      continue
+    }
+    if (seen.has(tool)) {
+      report.error('connector/tools', file, `${label}[${index}]: duplicate tool name "${tool}"`, at(`${p}.${index}`))
+      continue
+    }
+    seen.add(tool)
+  }
 }
 
 // --- mcp.json --------------------------------------------------------------
