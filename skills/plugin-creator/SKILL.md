@@ -5,7 +5,7 @@ description: Create and update Subbly marketplace plugins. Use when you create a
 
 # Plugin Creator
 
-A plugin is a directory in `plugins/<slug>/`. It gives the builder skills, agents, tools, scripts, schedules and config fields. Working examples of each content type are in `plugins/` of this repo. Copy the closest one.
+A plugin is a directory in `plugins/<slug>/`. It gives the builder skills, agents, tools, scripts, schedules and config fields. Working examples of each content type are in the [subbly-plugin-examples](https://github.com/subbly/subbly-plugin-examples) repo.
 
 The builder reads all plugins in one refresh, all-or-nothing. One error in one plugin stops the release of all plugins. `pnpm lint` finds these errors offline. Run it before each commit and continue only at 0 errors. A warning means the content is dead or broken at runtime; remove the cause or write down why you keep it.
 
@@ -25,7 +25,7 @@ The builder reads all plugins in one refresh, all-or-nothing. One error in one p
    ```
 
    - `$schema` is that URL exactly. `name` is the slug. `description` is required, up to 500 characters.
-   - `displayName` is what the UI shows, never `name`. `image` adds a cover URL. `default: true` installs into every project with no user present.
+   - `displayName` is what the UI shows, never `name`. `image` adds a cover. `default: true` installs into every project with no user present.
    - Leave `version` out: the builder discards it. `author` (`name`, `email`, `url`), `homepage`, `repository`, `license` and up to 20 `keywords` are accepted.
    - An unknown key at the root or inside the namespace fails the release. Each content type below adds its own keys.
 
@@ -39,20 +39,22 @@ The builder reads all plugins in one refresh, all-or-nothing. One error in one p
 
 ```
 plugins/<slug>/
-  plugin.json                    manifest
-  mcp.json                       optional, remote MCP servers
-  skills/<name>/SKILL.md         skills
-  skills/install/SKILL.md        required when the manifest sets setup: true
-  co.subbly.builder/             builder-only content
-    agents/<name>/AGENT.md
-    automations/<slug>.md
-    scripts/
-    instructions.md
+   plugin.json                    manifest
+   mcp.json                       optional, remote MCP servers
+   skills/<name>/SKILL.md         skills
+   skills/install/SKILL.md        required when the manifest sets setup: true
+   co.subbly.builder/             builder-only content
+      agents/<name>/AGENT.md
+      automations/<slug>.md
+      scripts/
+      instructions.md
 ```
 
-5. **Run `pnpm lint`.** Continue at 0 errors.
+5. **Add a cover (optional).** Commit a PNG, JPEG or WebP of at most 1 MB in the plugin and set `image` to its path from the plugin root, for example `"image": "cover.webp"`. The builder checks the bytes, not the extension, and refuses SVG. The path is plain segments (letters, digits, `.`, `_`, `-`): no leading slash, no `..`, no dotfiles. A value that starts with `http://` or `https://` is used as a remote URL and never checked. A missing, oversized or wrong-type file fails the release of all plugins, and `pnpm lint` checks only the string, not the file. The UI shows the cover as a wide banner, so a landscape image such as 1536x1024 works.
 
-6. **Release.** Bump `version` in `marketplace.json` and merge to `main`.
+6. **Run `pnpm lint`.** Continue at 0 errors.
+
+7. **Release.** Bump `version` in `marketplace.json` and merge to `main`.
 
 ## Content types
 

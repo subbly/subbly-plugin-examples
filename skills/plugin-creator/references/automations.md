@@ -37,4 +37,4 @@ Each automation has a state directory. It survives sandbox rebuilds. The builder
 
 ## Keep a run short
 
-The builder's run preamble makes the agent read `MAP.md` first and rewrite it at the end. Your text sits on top of that. Leave nothing to discover: name the script as `scripts/<file>`, name the state files you want, and say what to do on failure (report and stop). `plugins/example-automations` in this repo is the reference shape.
+The builder's run preamble makes the agent read `MAP.md` first and rewrite it at the end. Your text sits on top of that. Leave nothing to discover: name the script as `scripts/<file>`, name the state files you want, and say what to do on failure (report and stop).
