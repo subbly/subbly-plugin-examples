@@ -5,6 +5,7 @@
   "extensions": {
     "co.subbly.builder": {
       "displayName": "Example: Contentful",
+      "image": "cover.webp",
       "connectors": {
         "contentful": {
           "auth": "oauth",

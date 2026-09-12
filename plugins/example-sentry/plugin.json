@@ -9,6 +9,7 @@
   "extensions": {
     "co.subbly.builder": {
       "displayName": "Example: Sentry",
+      "image": "cover.webp",
       "setup": true,
       "connectors": {
         "sentry": {

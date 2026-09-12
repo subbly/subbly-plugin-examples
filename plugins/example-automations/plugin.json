@@ -9,6 +9,7 @@
   "extensions": {
     "co.subbly.builder": {
       "displayName": "Example: automations and scripts",
+      "image": "cover.webp",
       "fields": [
         {
           "key": "GREETING",
