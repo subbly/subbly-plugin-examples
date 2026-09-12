@@ -9,7 +9,7 @@ const gate = {
 
 export default [
   {
-    ignores: ['node_modules/**', '**/node_modules/**', 'schemas/**', 'packages/**'],
+    ignores: ['node_modules/**', '**/node_modules/**', 'schemas/**'],
   },
   {
     // marketplace.json and every plugin.json / mcp.json.

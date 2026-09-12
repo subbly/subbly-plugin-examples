@@ -6,20 +6,16 @@
   "description": "Example Subbly marketplace plugins. Tooling only: no plugin ships from this package.",
   "scripts": {
     "lint": "eslint .",
-    "lint:cli": "subbly-plugin-lint",
-    "test": "pnpm --filter @subbly/plugin-lint test",
-    "changelog": "npx @changesets/cli",
-    "release": "pnpm changeset version"
+    "lint:strict": "subbly-plugin-lint --strict"
   },
   "devDependencies": {
-    "@changesets/cli": "^3.0.1",
     "@eslint/json": "^2.0.1",
     "@eslint/markdown": "^8.0.3",
-    "@subbly/plugin-lint": "workspace:*",
+    "@subbly/plugin-lint": "^0.0.3",
     "eslint": "^10.8.1"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "packageManager": "pnpm@10.20.0"
 }

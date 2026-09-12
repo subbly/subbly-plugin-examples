@@ -1,6 +1,19 @@
 # subbly-plugin-examples
 
-Example plugins for the Subbly Builder marketplace. Each one is a complete, lint-clean [Agent Plugins v1.0.0](https://agent-plugins.org) package you can copy to start your own plugin.
+Subbly Builder is the AI agent that works inside a Subbly shop's project. A plugin is a package a shop installs into that project to extend the agent: knowledge, tools, scheduled work, a setup chat and per-shop settings. Plugins ship through a marketplace, a git repo with a `marketplace.json` that lists them.
+
+This repo is a working marketplace of examples. Each plugin is a complete, lint-clean [Agent Plugins v1.0.0](https://agent-plugins.org) package you can copy to start your own. The standard covers the manifest and the skills, so other agent clients can read those parts. Everything Subbly-specific sits in one namespace and other clients ignore it.
+
+## What a plugin can contain
+
+- **Skill**: a procedure or reference the agent loads by itself when a task matches the skill's description.
+- **Agent**: a subagent that runs a self-contained job in a fresh context and returns only its result.
+- **Instructions**: a few lines the agent sees on every turn of every chat.
+- **Setup**: a guided chat that runs once, right after the shop installs the plugin.
+- **Script**: fixed code the plugin ships, run in the project sandbox.
+- **Automation**: work the builder runs on a schedule, with no user present.
+- **Connector**: a remote MCP server the agent sees as tools, with an API key or OAuth.
+- **Config field**: a per-shop value asked at install and handed to the project as an environment variable.
 
 ## Examples
 
@@ -14,54 +27,31 @@ Example plugins for the Subbly Builder marketplace. Each one is a complete, lint
 
 ## Layout
 
-`packages/plugin-lint` holds `@subbly/plugin-lint`, the linter. `marketplace.json` lists every plugin by slug; each plugin lives at `plugins/<slug>/`:
+`marketplace.json` lists every plugin by slug; each plugin lives at `plugins/<slug>/`:
 
 - `plugin.json`: the manifest. `name` must equal the marketplace slug. Subbly's data (display name, config fields, automations, connector auth and tool allowlists) sits under `extensions["co.subbly.builder"]`.
-- `skills/<name>/SKILL.md` and optional `mcp.json`: spec-owned, at the plugin root.
+- `skills/<name>/SKILL.md` and optional `mcp.json`: defined by the Agent Plugins standard, at the plugin root.
 - `co.subbly.builder/`: builder-only content, ignored by other clients: `agents/<name>/AGENT.md`, `automations/<slug>.md`, `scripts/`, `instructions.md`.
 
-## Author a plugin
+## Start your own marketplace
 
-The `plugin-creator` skill in `skills/plugin-creator/` is the full guide: every entity, every manifest key, the naming rules and the traps the linter cannot catch. Open this repo in Claude Code and ask it to add a plugin; it loads the skill by itself (`.claude/skills/plugin-creator` links to it).
+1. **Fork this repo.** It is already a working marketplace: `marketplace.json`, the lint setup and the example plugins come with it. Point Subbly at your fork.
+2. **Install and lint.** `pnpm install`, then `pnpm lint`. Zero errors is the release gate.
+3. **Install the guide.** The `plugin-creator` skill tells your agent how to write a plugin. See below.
+4. **Copy the closest example** to `plugins/<your-slug>/` and set `name` in its `plugin.json` to the same slug. Slugs are claimed once for the whole platform, so never ship `example-*`, and vendor-prefix a generic name.
+5. **List it in `marketplace.json`** and drop the example entries and directories you do not need. An unlisted plugin never ships.
+6. **Release.** Bump `version` in `marketplace.json` and merge to `main`. The bump is the only release trigger. That one version covers every plugin in the repo; a `version` inside `plugin.json` is ignored.
 
-### Install the skill in your own repo
+### The plugin-creator skill
 
-Bring the guide into any project with the [skills](https://skills.sh) CLI:
+The skill in `skills/plugin-creator/` is the full guide: every entity, every manifest key, the naming rules and the traps the linter cannot catch. Install it into your agent with the [skills](https://skills.sh) CLI:
 
 ```bash
 npx skills add subbly/subbly-plugin-examples --skill plugin-creator
 ```
 
-Add `-g` to install it globally, or `-a claude-code -a cursor` to pick agents. It also installs from a plain git URL, so a self-hosted remote works too.
+Add `-a claude-code -a cursor -a codex` to pick agents, or `-g` to install it globally. A plain git URL works too, so a self-hosted remote is fine.
 
-Every change ends with:
+## Update the linter
 
-```bash
-pnpm install
-pnpm lint
-```
-
-Zero errors means the marketplace passes the builder's release gate.
-
-The rules live in `@subbly/plugin-lint` (`packages/plugin-lint`), a standalone package you can install in your own marketplace repo. `pnpm exec subbly-plugin-lint --strict` runs the same rules without ESLint and fails on warnings too. See its [README](packages/plugin-lint/README.md).
-
-## Release
-
-### Plugins
-
-Copy the plugin into your own marketplace repo, bump `version` in its `marketplace.json`, and merge to `main`. The bump is the only release trigger.
-
-Slugs are claimed once for the whole platform, so rename `example-*` before you release, and vendor-prefix your own.
-
-### The linter
-
-`@subbly/plugin-lint` releases to npm through [Changesets](https://github.com/changesets/changesets), the same flow as the other Subbly monorepos. Anything you change under `packages/` needs one:
-
-```bash
-pnpm changelog   # pick the bump, write the user-facing line
-pnpm release     # consume the changesets, bump, write CHANGELOG.md
-```
-
-Then `pnpm publish` from `packages/plugin-lint`. Use `pnpm`, not `npm`: it resolves the workspace links. [PUBLISH.md](PUBLISH.md) has the full flow.
-
-Plugins in `plugins/` are not npm packages, so they never need a changeset.
+This repo only consumes `@subbly/plugin-lint`. Bump its version in `package.json` and run `pnpm install` to pick up a new release.
