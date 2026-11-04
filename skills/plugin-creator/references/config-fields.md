@@ -6,7 +6,7 @@
 
 ```json
 "fields": [
-  { "key": "API_KEY", "label": "API key", "type": "text", "required": true, "secret": true },
+  { "key": "API_KEY", "label": "API key", "description": "Find it in Settings > API.", "type": "text", "required": true, "secret": true },
   { "key": "TONE", "label": "Tone", "type": "select", "options": ["friendly", "formal"] }
 ]
 ```
@@ -40,8 +40,12 @@ Only uppercase `${NAME}` expands. It expands in `mcp.json` header values only, n
 
 A user can clear a field at any time. Handle an empty value. A saved change reaches a running sandbox at the next sync.
 
+Config values can differ per project, because a project can override a shop value, so read them from env and never share them across projects.
+
 ## Field shape
 
+- `label`: a short name, like "Connection string". Never a sentence.
+- `description`: optional, up to 300 characters. Shown under the input: where to find the value or what format it takes.
 - `type`: `text` or `select`.
 - `options`: `select` only, and required there. The strings are the labels the user sees.
 - `required`: blocks the install dialog and holds the installation on its current version until filled. Not allowed with `default: true`, because no user is present to fill it.
