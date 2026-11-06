@@ -23,7 +23,7 @@ export default [
     },
   },
   {
-    // SKILL.md, agents, automations and instructions.
+    // SKILL.md, agents, workflows and instructions.
     files: ['plugins/**/*.md'],
     language: 'markdown/gfm',
     languageOptions: { frontmatter: 'yaml' },

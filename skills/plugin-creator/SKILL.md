@@ -1,6 +1,6 @@
 ---
 name: plugin-creator
-description: Create and update Subbly marketplace plugins. Use when you create a new plugin; when you add or edit plugin.json, mcp.json or marketplace.json; when you add a skill, agent, automation, connector, script, setup step or config field; when you release a change; or when a merged change did not reach the builder.
+description: Create and update Subbly marketplace plugins. Use when you create a new plugin; when you add or edit plugin.json, mcp.json or marketplace.json; when you add a skill, agent, workflow, connector, script, setup step or config field; when you release a change; or when a merged change did not reach the builder.
 ---
 
 # Plugin Creator
@@ -45,7 +45,7 @@ plugins/<slug>/
    skills/install/SKILL.md        required when the manifest sets setup: true
    co.subbly.builder/             builder-only content
       agents/<name>/AGENT.md
-      automations/<slug>.md
+      workflows/<slug>.md
       scripts/
       instructions.md
 ```
@@ -70,7 +70,7 @@ Pick the type by the job.
 
 **Script** is fixed code the plugin ships, run in the project sandbox. Use it when fixed code beats the model: a health check, a data pull, a fixed transform.
 
-**Automation** is work the builder runs on its own: a trigger starts it, an agent carries it out with no user present. Today the trigger is a schedule and the work is a prompt.
+**Workflow** is work the builder runs on its own: a trigger starts it, an agent carries it out with no user present. Today the trigger is a schedule and the work is a prompt.
 
 **Connector** brings a remote MCP server the agent sees as tools, with an API key or OAuth. Never rename a released connector: users lose their credentials.
 
@@ -87,7 +87,7 @@ Each reference says where its content lives, what goes in `plugin.json` for it, 
 | Instructions | [writing-for-the-agent.md](references/writing-for-the-agent.md) |
 | Setup | [setup.md](references/setup.md) |
 | Script | [scripts.md](references/scripts.md) |
-| Automation | [automations.md](references/automations.md) |
+| Workflow | [workflows.md](references/workflows.md) |
 | Connector | [connectors.md](references/connectors.md) |
 | Config field | [config-fields.md](references/config-fields.md) |
 | Any rename | [names-and-collisions.md](references/names-and-collisions.md) |
