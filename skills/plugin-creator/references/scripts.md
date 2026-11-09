@@ -10,7 +10,7 @@
 
 ## How to address a script
 
-Write the relative form in all prose (skills, agents, automations, instructions):
+Write the relative form in all prose (skills, agents, workflows, instructions):
 
 ```
 scripts/<file>

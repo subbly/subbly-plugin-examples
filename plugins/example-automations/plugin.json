@@ -1,14 +1,14 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "example-automations",
-  "description": "Example plugin that ships a script with dependencies, a scheduled automation, a skill, always-on instructions and config fields. Copy it to start a plugin that runs code in the project sandbox.",
+  "description": "Example plugin that ships a script with dependencies, a scheduled workflow, a skill, always-on instructions and config fields. Copy it to start a plugin that runs code in the project sandbox.",
   "author": {
     "name": "Subbly",
     "url": "https://www.subbly.co"
   },
   "extensions": {
     "co.subbly.builder": {
-      "displayName": "Example: automations and scripts",
+      "displayName": "Example: workflows and scripts",
       "image": "cover.webp",
       "fields": [
         {
@@ -30,7 +30,7 @@
           "options": ["friendly", "formal"]
         }
       ],
-      "automations": {
+      "workflows": {
         "hourly-greeting": {
           "name": "Hourly greeting",
           "schedule": "0 * * * *",

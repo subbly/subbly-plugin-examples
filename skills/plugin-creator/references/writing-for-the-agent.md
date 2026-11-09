@@ -1,6 +1,6 @@
 # Writing for the agent
 
-How to write text the agent runs: a `SKILL.md`, an `AGENT.md`, an automation prompt, `instructions.md`. The packaging differs. The writing does not. These rules make the agent take the same path on each run.
+How to write text the agent runs: a `SKILL.md`, an `AGENT.md`, a workflow prompt, `instructions.md`. The packaging differs. The writing does not. These rules make the agent take the same path on each run.
 
 Each document has up to two parts. A **trigger** decides when the text loads. A **body** decides what the agent does once it is loaded. Judge each part on its own.
 
@@ -8,7 +8,7 @@ Each document has up to two parts. A **trigger** decides when the text loads. A 
 |---|---|---|
 | Skill | `description` in frontmatter | loaded into the main agent's context |
 | Agent | `description` in frontmatter | the subagent's system prompt |
-| Automation | the cron schedule, no trigger text | the prompt the builder runs unattended |
+| Workflow | the cron schedule, no trigger text | the prompt the builder runs unattended |
 | Instructions | none, always loaded | a few lines on every turn |
 
 ## The trigger
@@ -37,7 +37,7 @@ A body is built from **steps** (ordered actions) and **reference** (rules and fa
 
 End each step on a criterion the agent can check. "Every product page visited" tells done from not-done. "Enough understanding gathered" does not, and the agent ends the step early to reach the steps it can see ahead. The criterion also sets how hard the agent works: "every modified file accounted for" forces more than "produce a change list". The strongest criteria are both checkable and exhaustive.
 
-An agent body and an automation prompt need one more thing: the last step names the final message. The main agent gets only that message back from a subagent, and nobody reads an automation's transcript. State what the final message must contain, and it is the done criterion for the whole run.
+An agent body and a workflow prompt need one more thing: the last step names the final message. The main agent gets only that message back from a subagent, and nobody reads a workflow's transcript. State what the final message must contain, and it is the done criterion for the whole run.
 
 ## Say what to do, not what to avoid
 
@@ -47,7 +47,7 @@ Pick strong, existing words the model already knows and reuse them as a single t
 
 ## Give the agent what it cannot see
 
-A skill body runs inside the main agent, which already knows the project. An agent body and an automation prompt do not. The subagent starts with a fresh context and knows nothing about the shop, the stack or the conventions. The automation runs with no user to ask. Put all they need in the body, or name a skill for them to load. A step that says "follow the project conventions" is a no-op in a subagent: it has none to follow.
+A skill body runs inside the main agent, which already knows the project. An agent body and a workflow prompt do not. The subagent starts with a fresh context and knows nothing about the shop, the stack or the conventions. The workflow runs with no user to ask. Put all they need in the body, or name a skill for them to load. A step that says "follow the project conventions" is a no-op in a subagent: it has none to follow.
 
 ## Keep it short
 
@@ -65,10 +65,10 @@ Prune line by line:
 ## Checklist before commit
 
 - A skill or agent description lists the trigger cases and starts with the words a user would type. An agent description also names what comes back.
-- The body opens with the steps, in order, each ending on a checkable criterion. An agent or automation body ends by naming the final message.
+- The body opens with the steps, in order, each ending on a checkable criterion. An agent or workflow body ends by naming the final message.
 - Rules are prose. Any example is minimal, has a rule beside it and exists because prose could not carry the shape.
 - Each instruction says what to do. Prohibitions are rare and paired with the positive.
-- An agent or automation body carries all project knowledge it needs, or names the skill to load.
+- An agent or workflow body carries all project knowledge it needs, or names the skill to load.
 - Nothing restates a file or command the agent can read itself.
 - Every line still bears on the task. Branch-specific material lives in `references/`. `instructions.md` holds only every-turn rules.
 - `pnpm lint` passes with 0 errors.

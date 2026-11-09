@@ -1,8 +1,8 @@
-# Automations
+# Workflows
 
 ## Declaration in plugin.json
 
-`extensions["co.subbly.builder"].automations` is an object keyed by slug. The slug is 1-64 lowercase alphanumerics with single `-` separators. It starts and ends with an alphanumeric.
+`extensions["co.subbly.builder"].workflows` is an object keyed by slug. The slug is 1-64 lowercase alphanumerics with single `-` separators. It starts and ends with an alphanumeric.
 
 Each declaration has exactly three keys. All are required. Unknown keys fail.
 
@@ -11,7 +11,7 @@ Each declaration has exactly three keys. All are required. Unknown keys fail.
 - `model`: `normal` or `intelligent-high`.
 
 ```json
-"automations": {
+"workflows": {
   "daily-report": { "name": "Daily report", "schedule": "0 9 * * *", "model": "normal" }
 }
 ```
@@ -20,11 +20,11 @@ Each declaration has exactly three keys. All are required. Unknown keys fail.
 
 - 5 or 6 fields (6 adds seconds). The aliases `@hourly`, `@daily`, `@weekly`, `@monthly` and `@yearly` work. Names like `mon` and `jan` work.
 - The 15-minute floor is checked by sample firings, not by pattern. Two firings less than 15 minutes apart fail the release. `0,10,30 * * * *` fails, although most gaps are fine.
-- The linter cannot verify `L`, `W` and `#` offline. It only warns (`automation/schedule-unverified`). The builder decides at release.
+- The linter cannot verify `L`, `W` and `#` offline. It only warns (`workflow/schedule-unverified`). The builder decides at release.
 
 ## The markdown file
 
-`co.subbly.builder/automations/<slug>.md`, one per declared slug.
+`co.subbly.builder/workflows/<slug>.md`, one per declared slug.
 
 - Each declared slug needs its file. Each file needs its declaration. A file without one fails the release.
 - The body must not be empty. It is the whole prompt. The run has no user and no other context.
@@ -33,7 +33,7 @@ Each declaration has exactly three keys. All are required. Unknown keys fail.
 
 ## Run state
 
-Each automation has a state directory. It survives sandbox rebuilds. The builder creates it before the run and names it in the run prompt as "your state directory", with a `MAP.md` / `CONTEXT.md` layout the agent follows. Instruction text says "your state directory". It never spells a path.
+Each workflow has a state directory. It survives sandbox rebuilds. The builder creates it before the run and names it in the run prompt as "your state directory", with a `MAP.md` / `CONTEXT.md` layout the agent follows. Instruction text says "your state directory". It never spells a path.
 
 ## Keep a run short
 
