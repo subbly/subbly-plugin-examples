@@ -45,7 +45,7 @@ plugins/<slug>/
    skills/install/SKILL.md        required when the manifest sets setup: true
    co.subbly.builder/             builder-only content
       agents/<name>/AGENT.md
-      workflows/<slug>.md
+      workflows/<slug>/workflow.json
       scripts/
       instructions.md
 ```
@@ -70,7 +70,7 @@ Pick the type by the job.
 
 **Script** is fixed code the plugin ships, run in the project sandbox. Use it when fixed code beats the model: a health check, a data pull, a fixed transform.
 
-**Workflow** is work the builder runs on its own: a trigger starts it, an agent carries it out with no user present. Today the trigger is a schedule and the work is a prompt.
+**Workflow** is work the builder runs on its own, with no user present: a schedule, a webhook or the agent starts it, and a graph of nodes carries it out. Each project gets it switched off and the merchant turns it on.
 
 **Connector** brings a remote MCP server the agent sees as tools, with an API key or OAuth. Never rename a released connector: users lose their credentials.
 

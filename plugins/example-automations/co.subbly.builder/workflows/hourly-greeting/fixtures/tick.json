@@ -1,0 +1,9 @@
+{
+  "trigger": {
+    "scheduled_at": "2026-01-01T09:00:00.000Z",
+    "fired_at": "2026-01-01T09:00:01.000Z",
+    "timezone": "UTC",
+    "missed": 0
+  },
+  "pins": {}
+}
