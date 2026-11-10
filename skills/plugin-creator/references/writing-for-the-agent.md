@@ -1,6 +1,6 @@
 # Writing for the agent
 
-How to write text the agent runs: a `SKILL.md`, an `AGENT.md`, a workflow prompt, `instructions.md`. The packaging differs. The writing does not. These rules make the agent take the same path on each run.
+How to write text the agent runs: a `SKILL.md`, an `AGENT.md`, the instruction of a workflow chat node, `instructions.md`. The packaging differs. The writing does not. These rules make the agent take the same path on each run.
 
 Each document has up to two parts. A **trigger** decides when the text loads. A **body** decides what the agent does once it is loaded. Judge each part on its own.
 
@@ -8,7 +8,7 @@ Each document has up to two parts. A **trigger** decides when the text loads. A 
 |---|---|---|
 | Skill | `description` in frontmatter | loaded into the main agent's context |
 | Agent | `description` in frontmatter | the subagent's system prompt |
-| Workflow | the cron schedule, no trigger text | the prompt the builder runs unattended |
+| Workflow chat node | the workflow's trigger, no trigger text | `input.instruction` of a `core.chat.create` node, run unattended |
 | Instructions | none, always loaded | a few lines on every turn |
 
 ## The trigger

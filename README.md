@@ -11,7 +11,7 @@ This repo is a working marketplace of examples. Each plugin is a complete, lint-
 - **Instructions**: a few lines the agent sees on every turn of every chat.
 - **Setup**: a guided chat that runs once, right after the shop installs the plugin.
 - **Script**: fixed code the plugin ships, run in the project sandbox.
-- **Workflow**: work the builder runs on a schedule, with no user present.
+- **Workflow**: a graph of steps the builder runs with no user present, started by a schedule, a webhook or the agent.
 - **Connector**: a remote MCP server the agent sees as tools, with an API key or OAuth.
 - **Config field**: a per-shop value asked at install and handed to the project as an environment variable.
 
@@ -20,7 +20,7 @@ This repo is a working marketplace of examples. Each plugin is a complete, lint-
 | Plugin | Shows |
 | --- | --- |
 | `plugins/example-notes` | The smallest valid plugin: one skill, nothing else. |
-| `plugins/example-automations` | A script with dependencies and a committed lockfile, config fields (text, secret, select), a scheduled workflow with run state, always-on instructions, and a skill that calls the script. |
+| `plugins/example-automations` | A script with dependencies and a committed lockfile, config fields (text, secret, select), a scheduled workflow with a code node that reads the config fields, always-on instructions, and a skill that calls the script. |
 | `plugins/example-agent` | A subagent with a narrow tool allowlist, and a skill that tells the main agent when to spawn it. |
 | `plugins/example-sentry` | Setup: `"setup": true` plus an `install` skill that walks the user through wiring the Sentry SDK in the setup chat, with an OAuth connector and a cover image. |
 | `plugins/example-contentful` | A connector: a remote MCP server with OAuth, a tool allowlist, plus instructions for its tools. |
@@ -29,9 +29,9 @@ This repo is a working marketplace of examples. Each plugin is a complete, lint-
 
 `marketplace.json` lists every plugin by slug; each plugin lives at `plugins/<slug>/`:
 
-- `plugin.json`: the manifest. `name` must equal the marketplace slug. Subbly's data (display name, config fields, workflows, connector auth and tool allowlists) sits under `extensions["co.subbly.builder"]`.
+- `plugin.json`: the manifest. `name` must equal the marketplace slug. Subbly's data (display name, config fields, connector auth and tool allowlists) sits under `extensions["co.subbly.builder"]`.
 - `skills/<name>/SKILL.md` and optional `mcp.json`: defined by the Agent Plugins standard, at the plugin root.
-- `co.subbly.builder/`: builder-only content, ignored by other clients: `agents/<name>/AGENT.md`, `workflows/<slug>.md`, `scripts/`, `instructions.md`.
+- `co.subbly.builder/`: builder-only content, ignored by other clients: `agents/<name>/AGENT.md`, `workflows/<slug>/`, `scripts/`, `instructions.md`.
 
 ## Start your own marketplace
 

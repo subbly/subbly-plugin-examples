@@ -1,0 +1,22 @@
+{
+  "name": "Hourly greeting",
+  "trigger": {
+    "type": "core.schedule",
+    "input": {
+      "cron": "0 * * * *"
+    }
+  },
+  "nodes": [
+    {
+      "id": "greeting",
+      "type": "code",
+      "env": ["PLUGIN_SHOP_EXAMPLE_AUTOMATIONS__GREETING", "PLUGIN_SHOP_EXAMPLE_AUTOMATIONS__TONE"]
+    }
+  ],
+  "edges": [
+    {
+      "from": "trigger",
+      "to": "greeting"
+    }
+  ]
+}

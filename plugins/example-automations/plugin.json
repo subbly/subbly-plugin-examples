@@ -29,14 +29,7 @@
           "type": "select",
           "options": ["friendly", "formal"]
         }
-      ],
-      "workflows": {
-        "hourly-greeting": {
-          "name": "Hourly greeting",
-          "schedule": "0 * * * *",
-          "model": "normal"
-        }
-      }
+      ]
     }
   }
 }
