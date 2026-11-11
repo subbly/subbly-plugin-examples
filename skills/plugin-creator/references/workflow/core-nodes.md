@@ -10,7 +10,7 @@ The engine ships these nodes. Write them from this page. Each node takes `id`, `
 | `core.wait` | Suspend the run |
 | `core.http.request` | Call an HTTP API that has no package |
 | `core.mcp` | Call a tool of a connector the plugin ships |
-| `core.chat.create` | Hand work that needs judgement to an agent chat |
+| `core.chat.create` | Run a step that needs a language model, in the current project |
 | `core.email.send` | Send one email: [emails.md](emails.md) |
 
 ## core.switch
@@ -84,10 +84,10 @@ The engine ships these nodes. Write them from this page. Each node takes `id`, `
 
 `{ "id": "agent", "type": "core.chat.create", "input": { "instruction": "<the work, as the agent reads it>" } }`
 
-- Use a chat when the work needs judgement, and nodes when it does not. A scheduled instruction for an agent is `core.schedule` plus one chat node.
-- `input.instruction`: the whole instruction, as one string.
-- `input.model`: `normal` by default. Set it only when the user names a model.
-- `timeout`: 20 minutes by default. Keep it under 30 minutes, the run's active-time cap. `retries`: 12 by default.
-- Output: `{ "chat_id": "<id>" }`.
-- One workflow chat per project runs at a time. A production run waits for the other chat without spending a retry.
+- Use a chat for a step that needs a language model, and nodes for a step with one right answer. A scheduled instruction for an agent is `core.schedule` plus one chat node.
+- `input.instruction`: the whole instruction, as one string or one expression, in Markdown. The merchant sees it as the chat's first message.
+- `input.model`: `normal` (default) or `intelligent-high`. Choose the one the work needs.
+- `shape` (required): the JSON Schema of the chat's result.
+- The node takes `id`, `type`, `input`, and `shape`, and no other key.
+- Output: `{ "chat_id", "artifacts", "data" }`. The run pauses while the chat works. How to write the instruction and the `shape`, and how to use the output: [chat-nodes.md](chat-nodes.md).
 - The chat keeps notes between runs: [memory.md](memory.md).

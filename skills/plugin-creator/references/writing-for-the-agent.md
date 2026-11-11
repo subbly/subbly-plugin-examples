@@ -37,7 +37,7 @@ A body is built from **steps** (ordered actions) and **reference** (rules and fa
 
 End each step on a criterion the agent can check. "Every product page visited" tells done from not-done. "Enough understanding gathered" does not, and the agent ends the step early to reach the steps it can see ahead. The criterion also sets how hard the agent works: "every modified file accounted for" forces more than "produce a change list". The strongest criteria are both checkable and exhaustive.
 
-An agent body and a workflow prompt need one more thing: the last step names the final message. The main agent gets only that message back from a subagent, and nobody reads a workflow's transcript. State what the final message must contain, and it is the done criterion for the whole run.
+An agent body and a workflow prompt need one more thing: a named result. A subagent's last step names its final message, because the main agent gets only that message back. A workflow chat returns its result in the node's `shape`, because the next nodes get only that result ([workflow/chat-nodes.md](workflow/chat-nodes.md)). Nobody reads the transcript. The result is the done criterion for the whole run.
 
 ## Say what to do, not what to avoid
 
@@ -65,7 +65,7 @@ Prune line by line:
 ## Checklist before commit
 
 - A skill or agent description lists the trigger cases and starts with the words a user would type. An agent description also names what comes back.
-- The body opens with the steps, in order, each ending on a checkable criterion. An agent or workflow body ends by naming the final message.
+- The body opens with the steps, in order, each ending on a checkable criterion. An agent body ends by naming the final message; a workflow chat node has a `shape`.
 - Rules are prose. Any example is minimal, has a rule beside it and exists because prose could not carry the shape.
 - Each instruction says what to do. Prohibitions are rare and paired with the positive.
 - An agent or workflow body carries all project knowledge it needs, or names the skill to load.
