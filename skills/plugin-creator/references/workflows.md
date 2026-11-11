@@ -34,7 +34,7 @@ workflows/<slug>/
   - `core.schedule`: `input.cron` is a 5-field cron, at most every 5 minutes. `input.timezone` is optional; the default is the merchant's timezone.
   - `core.webhook`: the builder gives each project its own address. `shape` beside `input` is an optional JSON Schema of the body.
   - `core.manual`: started by the agent. `shape` is a JSON Schema of the run payload, and it is required.
-- `nodes` each have an `id` and a `type`. A `core.chat.create` node starts an agent chat with no user; its `input.instruction` holds the whole prompt as text. A node reads the output of each earlier node as `results.<id>`, and the trigger as `results.trigger`.
+- `nodes` each have an `id` and a `type`. A `core.chat.create` node starts an agent chat with no user; its `input.instruction` holds the whole prompt as text, and the run waits for the chat to end and reads its result as `results.<id>.data`. A node reads the output of each earlier node as `results.<id>`, and the trigger as `results.trigger`.
 - `edges` join `trigger` and the node ids.
 
 ## Code nodes
@@ -73,6 +73,7 @@ Read the one your task needs. They are the builder's own workflow references, wi
 | `workflow.json`, edges, `onFailure`, package pins | [workflow/workflow-json.md](workflow/workflow-json.md) |
 | Triggers and webhook verification | [workflow/triggers.md](workflow/triggers.md) |
 | Core nodes: switch, merge, loop, wait, HTTP, MCP, chat | [workflow/core-nodes.md](workflow/core-nodes.md) |
+| A chat node's instruction and reply | [workflow/chat-nodes.md](workflow/chat-nodes.md) |
 | Code nodes | [workflow/code-nodes.md](workflow/code-nodes.md) |
 | CEL expressions | [workflow/cel.md](workflow/cel.md) |
 | Reading every page of a list | [workflow/pages.md](workflow/pages.md) |
