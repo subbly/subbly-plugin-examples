@@ -25,6 +25,7 @@ The `tools` frontmatter key accepts only the names below. Any other name fails t
 - `tool_describe` reads the input and output shapes of a connector tool
 - `apply_to_preview` pushes changes into the live preview
 - `restart_preview` restarts the preview when it is stuck or stale
+- `artifact` uploads an artifact file, so the agent can create or change an artifact
 
 These names are grant keys, not the tools the model sees. For file editing, grant `apply_patch`, or grant the `edit_file` and `write_file` pair. `apply_patch` is the recommended form. The runtime maps each file editing grant to the editing tool of the active model. Because of this, never name a file editing tool in an agent's body. Write "edit the file" instead.
 
