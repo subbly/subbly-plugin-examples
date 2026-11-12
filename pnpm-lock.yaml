@@ -15,8 +15,8 @@ importers:
         specifier: ^8.0.3
         version: 8.0.3
       '@subbly/plugin-lint':
-        specifier: ^0.0.9
-        version: 0.0.9
+        specifier: ^0.0.11
+        version: 0.0.11
       eslint:
         specifier: ^10.8.1
         version: 10.8.1
@@ -85,8 +85,8 @@ packages:
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
 
-  '@subbly/plugin-lint@0.0.9':
-    resolution: {integrity: sha512-51WFcgiiFGBjA/K0AqFekFE09IBWkXL2L/BjCJhG5+vYvlQtGIVWKBHf5Z0wDRtf0XYneIyJHJVDqMCYyVMtiQ==}
+  '@subbly/plugin-lint@0.0.11':
+    resolution: {integrity: sha512-RmDy85PBKHxpH0Be1yGEqwh5LWpHzTGxuK3+tETPH8aViXC/i+btL4Wot+oecO6UB5elSesEhoiOdjr0iI+2/g==}
     engines: {node: '>=20'}
     hasBin: true
 
@@ -597,7 +597,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@subbly/plugin-lint@0.0.9': {}
+  '@subbly/plugin-lint@0.0.11': {}
 
   '@types/debug@4.1.13':
     dependencies:
