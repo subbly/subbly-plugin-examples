@@ -1,6 +1,6 @@
 # Connectors
 
-A connector is a remote MCP server in `mcp.json`, at the plugin root. The agent sees its tools under the name you give the server.
+A connector is a remote MCP server in `mcp.json`, at the plugin root. The agent sees the connector as `<plugin-slug>__<server name>`, and calls each tool by the name the server gives it.
 
 ## mcp.json
 
